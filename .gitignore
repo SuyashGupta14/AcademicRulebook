@@ -4,6 +4,7 @@
 
 # Planning document (internal)
 implementation_plan.md
+eval_results.json
 
 # ChromaDB vector store
 chroma_db/
