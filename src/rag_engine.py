@@ -36,7 +36,7 @@ class RulebookRAGEngine:
         self.persist_dir = persist_dir
         self.collection_name = collection_name
         self.api_key = api_key or os.environ.get("GOOGLE_API_KEY")
-        self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+        self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
 
         # Initialize ChromaDB persistent client
         if not os.path.exists(self.persist_dir):
@@ -91,7 +91,7 @@ class RulebookRAGEngine:
         # 2. Build structured prompt
         user_prompt = build_query_prompt(question, passages)
 
-        # 3. Call Gemini with guaranteed Pydantic schema
+        # 3. Call Gemini with guaranteed Pydantic schema and quota retry loop
         config = types.GenerateContentConfig(
             system_instruction=SYSTEM_INSTRUCTION,
             response_mime_type="application/json",
@@ -99,21 +99,32 @@ class RulebookRAGEngine:
             temperature=0.0
         )
 
-        try:
-            response = self.genai_client.models.generate_content(
-                model=self.model_name,
-                contents=user_prompt,
-                config=config
-            )
+        max_retries = 4
+        for attempt in range(max_retries):
+            try:
+                response = self.genai_client.models.generate_content(
+                    model=self.model_name,
+                    contents=user_prompt,
+                    config=config
+                )
 
-            response_text = response.text.strip()
-            # Parse into Pydantic model
-            parsed_data = json.loads(response_text)
-            return AnswerResponse(**parsed_data)
+                response_text = response.text.strip()
+                parsed_data = json.loads(response_text)
+                return AnswerResponse(**parsed_data)
 
-        except Exception as e:
-            # Fallback or diagnostic wrapper
-            raise RuntimeError(f"Error querying Gemini model: {str(e)}") from e
+            except Exception as e:
+                err_str = str(e)
+                if ("429" in err_str or "RESOURCE_EXHAUSTED" in err_str) and attempt < max_retries - 1:
+                    wait_time = 15 + (attempt * 10)
+                    # Look for suggested retry delay in error message
+                    import re
+                    match = re.search(r"retry in ([\d\.]+)s", err_str)
+                    if match:
+                        wait_time = min(float(match.group(1)) + 2.0, 60.0)
+                    print(f"\n[Rate Limit] 429 received. Waiting {wait_time:.1f}s before retry {attempt+1}/{max_retries}...")
+                    time.sleep(wait_time)
+                else:
+                    raise RuntimeError(f"Error querying Gemini model: {err_str}") from e
 
 
 def ask_rulebook(question: str) -> AnswerResponse:

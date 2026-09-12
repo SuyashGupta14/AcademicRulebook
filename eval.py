@@ -27,6 +27,8 @@ load_dotenv()
 def run_evaluation(
     test_file: str = "tests/test_cases.json",
     limit: int = 0,
+    start_index: int = 0,
+    delay: float = 12.5,
     category_filter: str = ""
 ) -> int:
     """Run automated scoring harness over test cases."""
@@ -51,11 +53,14 @@ def run_evaluation(
     if category_filter:
         test_cases = [tc for tc in test_cases if tc.get("category") == category_filter.upper()]
 
+    if start_index > 0:
+        test_cases = test_cases[start_index:]
+
     if limit > 0:
         test_cases = test_cases[:limit]
 
-    print(f"Loaded {len(test_cases)} test cases to evaluate.")
-    print(f"Model: {os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')}")
+    print(f"Loaded {len(test_cases)} test cases to evaluate (pacing delay: {delay}s).")
+    print(f"Model: {os.environ.get('GEMINI_MODEL', 'gemini-3.6-flash')}")
     print("-" * 68)
 
     try:
@@ -143,8 +148,9 @@ def run_evaluation(
                 "citations_count": 0
             })
 
-        # Mild pacing to respect rate limits (Gemini Flash free tier 15 RPM)
-        time.sleep(1.0)
+        # Pacing between calls to stay comfortably under API rate limit (5 RPM on free tier = ~12.5s)
+        if idx < len(test_cases) and delay > 0:
+            time.sleep(delay)
 
     elapsed = time.time() - start_time
 
@@ -208,8 +214,15 @@ def run_evaluation(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate Academic Rulebook RAG System")
     parser.add_argument("--limit", type=int, default=0, help="Limit number of test cases")
+    parser.add_argument("--start", type=int, default=0, help="Start from index offset")
+    parser.add_argument("--delay", type=float, default=12.5, help="Delay in seconds between queries (default 12.5s for 5 RPM free tier)")
     parser.add_argument("--category", type=str, default="", help="Filter by category (ANSWERED, UNANSWERED, CONTRADICTORY)")
     args = parser.parse_args()
 
-    exit_code = run_evaluation(limit=args.limit, category_filter=args.category)
+    exit_code = run_evaluation(
+        limit=args.limit,
+        start_index=args.start,
+        delay=args.delay,
+        category_filter=args.category
+    )
     sys.exit(exit_code)

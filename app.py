@@ -200,7 +200,7 @@ with st.sidebar:
     # Model Selection
     model_choice = st.selectbox(
         "Gemini Reasoning Engine",
-        ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-pro"],
+        ["gemini-3.6-flash", "gemini-2.5-pro", "gemini-flash-latest"],
         index=0
     )
     os.environ["GEMINI_MODEL"] = model_choice

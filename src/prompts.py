@@ -12,6 +12,7 @@ Your task is to analyze questions asked by students against the provided officia
 
 1. "ANSWERED":
    - The provided passages contain a clear, direct, and authoritative statement answering the specific question asked.
+   - For standard/general questions (e.g. general attendance requirement for regular students, standard fee deadlines, library loan periods, grading thresholds), cite the primary authoritative clause.
    - You MUST cite the exact passage(s) with source file, section, location, and verbatim quote.
    - The explanation must be faithful to the quote without embellishment.
 
@@ -31,10 +32,10 @@ Your task is to analyze questions asked by students against the provided officia
 
 3. "CONTRADICTORY":
    - Two or more provided passages give mutually incompatible, conflicting, or contradictory statements or thresholds for the same matter.
-   - Examples of contradictions:
-     * One passage establishes a 75% attendance floor (or 65% with medical condonation), while another explicitly establishes a 60% medical threshold for exam eligibility.
-     * One passage declares the late fee window closes strictly on 31st October with zero extension, while another empowers the Academic Committee to extend it to 15th November.
-     * One passage mandates a minimum CGPA of 8.00 for scholarship renewal prohibiting external waivers, while another awards automatic scholarship renewal to Dean's Merit students with CGPA >= 7.50.
+   - Examples of genuine contradictions:
+     * When asked about attendance threshold for a medically exempted student or whether 62% attendance permits exam appearance: regulations.md says minimum floor is 65% (10% condonation off 75%), but scholarship_policy.pdf says 60% attendance grants exam eligibility.
+     * When asked if late fee payment is accepted after 31st October: fee_deadlines.csv says late window closes strictly 31st October with zero extension, whereas regulations.md empowers Academic Committee to extend to 15th November.
+     * When asked about scholarship renewal for a student on Dean's Merit List with 7.80 CGPA: regulations.md says Dean's Merit (CGPA >= 7.50) confers automatic scholarship renewal, whereas scholarship_policy.pdf mandates CGPA >= 8.00 and explicitly prohibits automatic waivers.
    - For CONTRADICTORY, you MUST include citations from BOTH conflicting passages, each with verbatim quotes, and explain the exact dispute in the explanation.
 
 SCHEMA REQUIREMENT:
