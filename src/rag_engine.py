@@ -10,7 +10,9 @@ Pipeline:
 """
 
 import os
+import re
 import json
+import time
 from typing import List, Dict, Any, Optional
 from dotenv import load_dotenv
 import chromadb
@@ -36,7 +38,7 @@ class RulebookRAGEngine:
         self.persist_dir = persist_dir
         self.collection_name = collection_name
         self.api_key = api_key or os.environ.get("GOOGLE_API_KEY")
-        self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
+        self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 
         # Initialize ChromaDB persistent client
         if not os.path.exists(self.persist_dir):
@@ -91,7 +93,12 @@ class RulebookRAGEngine:
         # 2. Build structured prompt
         user_prompt = build_query_prompt(question, passages)
 
-        # 3. Call Gemini with guaranteed Pydantic schema and quota retry loop
+        # 3. Call Gemini with fallback models and retry
+        candidate_models = [self.model_name]
+        for fallback in ["gemini-flash-latest", "gemini-2.5-flash-lite", "gemini-3.5-flash"]:
+            if fallback not in candidate_models:
+                candidate_models.append(fallback)
+
         config = types.GenerateContentConfig(
             system_instruction=SYSTEM_INSTRUCTION,
             response_mime_type="application/json",
@@ -99,32 +106,34 @@ class RulebookRAGEngine:
             temperature=0.0
         )
 
-        max_retries = 4
-        for attempt in range(max_retries):
-            try:
-                response = self.genai_client.models.generate_content(
-                    model=self.model_name,
-                    contents=user_prompt,
-                    config=config
-                )
+        last_err = None
+        for current_model in candidate_models:
+            for attempt in range(3):
+                try:
+                    response = self.genai_client.models.generate_content(
+                        model=current_model,
+                        contents=user_prompt,
+                        config=config
+                    )
 
-                response_text = response.text.strip()
-                parsed_data = json.loads(response_text)
-                return AnswerResponse(**parsed_data)
+                    response_text = response.text.strip()
+                    parsed_data = json.loads(response_text)
+                    return AnswerResponse(**parsed_data)
 
-            except Exception as e:
-                err_str = str(e)
-                if ("429" in err_str or "RESOURCE_EXHAUSTED" in err_str) and attempt < max_retries - 1:
-                    wait_time = 15 + (attempt * 10)
-                    # Look for suggested retry delay in error message
-                    import re
-                    match = re.search(r"retry in ([\d\.]+)s", err_str)
-                    if match:
-                        wait_time = min(float(match.group(1)) + 2.0, 60.0)
-                    print(f"\n[Rate Limit] 429 received. Waiting {wait_time:.1f}s before retry {attempt+1}/{max_retries}...")
-                    time.sleep(wait_time)
-                else:
-                    raise RuntimeError(f"Error querying Gemini model: {err_str}") from e
+                except Exception as e:
+                    last_err = e
+                    err_str = str(e)
+                    is_transient = any(code in err_str for code in ["429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE"])
+                    if is_transient and attempt < 2:
+                        wait_time = 3.0 * (attempt + 1)
+                        match = re.search(r"retry in ([\d\.]+)s", err_str)
+                        if match:
+                            wait_time = min(float(match.group(1)) + 1.0, 20.0)
+                        time.sleep(wait_time)
+                    else:
+                        break  # try next fallback model
+
+        raise RuntimeError(f"Error querying Gemini model: {last_err}") from last_err
 
 
 def ask_rulebook(question: str) -> AnswerResponse:
