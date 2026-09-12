@@ -2,8 +2,6 @@
 
 > A precision-engineered RAG (Retrieval-Augmented Generation) advisor built for university academic regulations (modeled on **SGSITS Indore**). It provides traceable, passage-grounded answers, admits ignorance on unmentioned queries, and explicitly flags contradictions when institutional regulations conflict across documents.
 
-![UI Banner](assets/ui_banner.png)
-
 ---
 
 ## 🌟 Core Highlights
@@ -12,8 +10,6 @@ The system operates across three deterministic, mutually exclusive states:
 1. 🟢 **`ANSWERED`**: Authoritative answers verified with verbatim citations, section numbers, and exact line/page references.
 2. ⚪ **`UNANSWERED`**: Polite, firm ignorance admission for plausible near-misses (e.g., family bereavement, visa delays, dress codes, lecture recording). Zero hand-waving or external hallucinations.
 3. 🟡 **`CONTRADICTORY`**: Incompatible clauses across regulations are detected and rendered side-by-side with exact statutory excerpts and legal conflict analysis.
-
-![Contradiction Side-by-Side Comparison](assets/contradiction_demo.png)
 
 ---
 
