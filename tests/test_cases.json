@@ -1,0 +1,297 @@
+[
+  {
+    "id": "ANS-01",
+    "category": "ANSWERED",
+    "question": "What is the mandatory attendance percentage required to appear in the End-Semester Examination?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "75% attendance is mandatory in each subject (Section 4.1)"
+  },
+  {
+    "id": "ANS-02",
+    "category": "ANSWERED",
+    "question": "How much attendance deficiency can the Director condone on medical grounds?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "Up to 10% condonation, minimum 65% floor (Section 4.3)"
+  },
+  {
+    "id": "ANS-03",
+    "category": "ANSWERED",
+    "question": "What is the room rent and maintenance fee per semester for hostel residents?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md", "fee_deadlines.csv"],
+    "key_fact": "INR 31,450 per semester (Section 9.2 / fee_deadlines.csv)"
+  },
+  {
+    "id": "ANS-04",
+    "category": "ANSWERED",
+    "question": "What is the maximum allowable Turnitin similarity index for project dissertations and theses?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "Strictly 15% similarity threshold (Section 6.4)"
+  },
+  {
+    "id": "ANS-05",
+    "category": "ANSWERED",
+    "question": "What is the curfew timing for students residing in the Girls' Hostels?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "9:00 PM on all days (Section 9.3)"
+  },
+  {
+    "id": "ANS-06",
+    "category": "ANSWERED",
+    "question": "What grade and grade points are awarded for scoring between 80% and 89% in a course?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "Grade A+ with 9.0 grade points (Section 5.3)"
+  },
+  {
+    "id": "ANS-07",
+    "category": "ANSWERED",
+    "question": "What is the fee for filing a Challenge Re-Evaluation of an exam paper?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md", "fee_deadlines.csv"],
+    "key_fact": "INR 1,500 per paper/subject (Section 11.2 / fee_deadlines.csv)"
+  },
+  {
+    "id": "ANS-08",
+    "category": "ANSWERED",
+    "question": "How many books can an undergraduate B.Tech student borrow from the Central Library and for how long?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "Up to 4 volumes for 14 calendar days (Section 12.2)"
+  },
+  {
+    "id": "ANS-09",
+    "category": "ANSWERED",
+    "question": "What is the monthly stipend for regular AICTE-admitted M.Tech scholars holding valid GATE scores?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["scholarship_policy.pdf"],
+    "key_fact": "INR 12,400 monthly stipend for 24 months (Section 2.4)"
+  },
+  {
+    "id": "ANS-10",
+    "category": "ANSWERED",
+    "question": "What is the maximum number of backlogs allowed for promotion from 1st Year to 2nd Year under ATKT?",
+    "expected_state": "ANSWERED",
+    "expected_sources": ["regulations.md"],
+    "key_fact": "Not more than 4 theoretical courses across Semesters I and II (Section 7.1)"
+  },
+  {
+    "id": "UNANS-01",
+    "category": "UNANSWERED",
+    "question": "Can I defer my mid-semester exam if an immediate family member passes away?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Regulations cover medical hospitalization, but not bereavement absence"
+  },
+  {
+    "id": "UNANS-02",
+    "category": "UNANSWERED",
+    "question": "What happens to my enrolled courses if my student entry visa is delayed?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers course registration deadlines and late fees, not consular/visa delays"
+  },
+  {
+    "id": "UNANS-03",
+    "category": "UNANSWERED",
+    "question": "Can I convert from full-time B.Tech to part-time evening study mid-degree?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Defines degree programs, but no mechanism for mid-course mode switching"
+  },
+  {
+    "id": "UNANS-04",
+    "category": "UNANSWERED",
+    "question": "Is there a formal dress code or uniform prescribed for attending offline examinations?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers exam hall conduct and prohibited electronics, not attire"
+  },
+  {
+    "id": "UNANS-05",
+    "category": "UNANSWERED",
+    "question": "Are students permitted to audio-record classroom lectures for personal revision?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers academic integrity and plagiarism, not in-class audio/video recording"
+  },
+  {
+    "id": "UNANS-06",
+    "category": "UNANSWERED",
+    "question": "How is a scholarship disbursement calculated if tuition fees are paid in foreign currency?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Specifies waiver amounts in INR, but mentions no foreign currency conversion"
+  },
+  {
+    "id": "UNANS-07",
+    "category": "UNANSWERED",
+    "question": "Can an undergraduate student challenge a grade awarded specifically by an adjunct visiting professor?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Re-evaluation process exists, but makes no distinction for faculty employment category"
+  },
+  {
+    "id": "UNANS-08",
+    "category": "UNANSWERED",
+    "question": "What is the procedure for obtaining a campus four-wheeler parking permit for day scholars?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Campus regulation exists, but vehicular parking permits are completely unaddressed"
+  },
+  {
+    "id": "UNANS-09",
+    "category": "UNANSWERED",
+    "question": "What percentage of tuition fees is refunded if a student cancels admission in the second month?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Fee schedules and late dates are listed, but no withdrawal refund percentage schedule"
+  },
+  {
+    "id": "UNANS-10",
+    "category": "UNANSWERED",
+    "question": "Can a student take a voluntary one-year sabbatical gap and retain their merit scholarship?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers annual renewal CGPA, not gap-year leave or scholarship retention during sabbatical"
+  },
+  {
+    "id": "UNANS-11",
+    "category": "UNANSWERED",
+    "question": "What is the protocol if two end-semester examinations are scheduled on the exact same date and time slot?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Centralized exam schedules are covered, but no conflict resolution rule for clashes"
+  },
+  {
+    "id": "UNANS-12",
+    "category": "UNANSWERED",
+    "question": "Is there a cap on how many extracurricular society clubs a student may join simultaneously?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Mentions student societies like IEEE and SAE, but sets no limit on club memberships"
+  },
+  {
+    "id": "UNANS-13",
+    "category": "UNANSWERED",
+    "question": "Can a student diagnosed with dyslexia or ADHD request extra time during written examinations?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers acute medical hospitalization condonation, but no learning disability accommodations"
+  },
+  {
+    "id": "UNANS-14",
+    "category": "UNANSWERED",
+    "question": "What recourse do students have if the Institute cancels an elective course after two weeks of teaching?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers student registration, but not institute-initiated elective cancellations"
+  },
+  {
+    "id": "UNANS-15",
+    "category": "UNANSWERED",
+    "question": "Can undergraduate students transfer academic credits earned from online Coursera or edX certifications?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Defines L-T-P credits, but has no credit transfer framework for third-party MOOCs"
+  },
+  {
+    "id": "UNANS-16",
+    "category": "UNANSWERED",
+    "question": "How are plagiarism penalties distributed when a group capstone project report contains copied content?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Plagiarism policy covers individual dissertations/theses, not multi-student joint liability"
+  },
+  {
+    "id": "UNANS-17",
+    "category": "UNANSWERED",
+    "question": "Can a student placed on academic monitoring be elected as a hostel wing representative?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers academic monitoring and hostel rules, but not hostel election eligibility"
+  },
+  {
+    "id": "UNANS-18",
+    "category": "UNANSWERED",
+    "question": "What should a student do if an SBI Collect fee payment debits their account but generates no receipt?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Mandates SBI Collect gateway, but provides no banking error resolution protocol"
+  },
+  {
+    "id": "UNANS-19",
+    "category": "UNANSWERED",
+    "question": "What documentation is required to grant a semester-long medical leave of absence for mental health therapy?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Specifies acute inpatient hospitalization and MBBS doctors, not mental health/therapy leave"
+  },
+  {
+    "id": "UNANS-20",
+    "category": "UNANSWERED",
+    "question": "What is the maximum number of times a student can apply for Challenge Re-Evaluation in an academic year?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Specifies scrutiny fee and 10-day application period, but no annual application limit"
+  },
+  {
+    "id": "UNANS-21",
+    "category": "UNANSWERED",
+    "question": "What rights of defense does a student have if falsely accused of cheating by an examination invigilator?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Specifies penalties for proven malpractice, not defense procedures for contested accusations"
+  },
+  {
+    "id": "UNANS-22",
+    "category": "UNANSWERED",
+    "question": "Can an alumnus audit an engineering departmental laboratory session without enrolling in a degree program?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers degree candidates and lab PPE safety, but makes no provision for non-degree audits"
+  },
+  {
+    "id": "UNANS-23",
+    "category": "UNANSWERED",
+    "question": "What is the formal procedure to request a change of final-year major project faculty supervisor?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Specifies major project credits and Turnitin checks, not supervisor reassignment workflows"
+  },
+  {
+    "id": "UNANS-24",
+    "category": "UNANSWERED",
+    "question": "Are international NRI-quota students eligible to apply for Seksaria Merit-Cum-Means scholarships?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers family income ceilings in INR, but doesn't mention NRI citizenship eligibility"
+  },
+  {
+    "id": "UNANS-25",
+    "category": "UNANSWERED",
+    "question": "What compensatory marks are awarded if an End-Semester examination paper has a printing misprint?",
+    "expected_state": "UNANSWERED",
+    "near_miss_reason": "Covers examination rules and passing thresholds, but not typographical errata adjustments"
+  },
+  {
+    "id": "CONTRA-01",
+    "category": "CONTRADICTORY",
+    "question": "What is the minimum attendance threshold required for a medically exempted student to sit for the End-Semester Examination?",
+    "expected_state": "CONTRADICTORY",
+    "conflicting_sources": ["regulations.md", "scholarship_policy.pdf"],
+    "dispute_explanation": "regulations.md Section 4.3 sets the absolute minimum medical floor at 65% (10% condonation off 75%), whereas scholarship_policy.pdf Section 3.4 explicitly allows medically exempted scholars to sit for exams with 60% attendance."
+  },
+  {
+    "id": "CONTRA-02",
+    "category": "CONTRADICTORY",
+    "question": "Can a student pay their semester fees with a late fee after 31st October, or is that date strictly final?",
+    "expected_state": "CONTRADICTORY",
+    "conflicting_sources": ["fee_deadlines.csv", "regulations.md"],
+    "dispute_explanation": "fee_deadlines.csv specifies late fee window closes 2024-10-31 with zero extension beyond 31st October, while regulations.md Section 8.4 empowers the Academic Committee to extend the late payment deadline to 15th November."
+  },
+  {
+    "id": "CONTRA-03",
+    "category": "CONTRADICTORY",
+    "question": "Does a student with a 7.80 CGPA who is named to the Dean's Merit Honor Roll qualify for automatic scholarship renewal?",
+    "expected_state": "CONTRADICTORY",
+    "conflicting_sources": ["regulations.md", "scholarship_policy.pdf"],
+    "dispute_explanation": "regulations.md Section 5.5 states students on the Dean's Merit List (CGPA >= 7.50) are entitled to automatic annual renewal of all institutional scholarships, whereas scholarship_policy.pdf Section 4.2 mandates a minimum CGPA of 8.00 for renewal and specifically disallows automatic honor roll waivers."
+  },
+  {
+    "id": "CONTRA-04",
+    "category": "CONTRADICTORY",
+    "question": "If a scholarship recipient has a verified hospital medical certificate and 62% attendance, are they detained from appearing in exams or permitted to write them?",
+    "expected_state": "CONTRADICTORY",
+    "conflicting_sources": ["regulations.md", "scholarship_policy.pdf"],
+    "dispute_explanation": "Under regulations.md Section 4.4, 62% is below the 65% condonation floor resulting in 'Z' grade detention, but under scholarship_policy.pdf Section 3.4, 62% exceeds the 60% medical baseline ensuring exam eligibility."
+  },
+  {
+    "id": "CONTRA-05",
+    "category": "CONTRADICTORY",
+    "question": "Does the Academic Committee have the authority to accept semester fee payments until 15th November notwithstanding published fee schedules?",
+    "expected_state": "CONTRADICTORY",
+    "conflicting_sources": ["fee_deadlines.csv", "regulations.md"],
+    "dispute_explanation": "fee_deadlines.csv declares a strict penalty of mandatory semester debarment with zero extension beyond 31st October, contradicting regulations.md Section 8.4 which grants discretionary authority to the Academic Committee to extend the window up to 15th November."
+  }
+]
